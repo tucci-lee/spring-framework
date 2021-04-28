@@ -80,7 +80,7 @@ public abstract class ScopedProxyUtils {
 		// The target bean should be ignored in favor of the scoped proxy.
 		targetDefinition.setAutowireCandidate(false);
 		targetDefinition.setPrimary(false);
-
+		// 注册代理BeanDefinitionn
 		// Register the target bean as separate bean in the factory.
 		registry.registerBeanDefinition(targetBeanName, targetDefinition);
 

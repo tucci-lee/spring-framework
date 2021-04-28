@@ -16,12 +16,12 @@
 
 package org.springframework.context.annotation;
 
-import java.lang.annotation.Annotation;
-
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.util.Assert;
+
+import java.lang.annotation.Annotation;
 
 /**
  * A {@link ScopeMetadataResolver} implementation that by default checks for
@@ -84,6 +84,7 @@ public class AnnotationScopeMetadataResolver implements ScopeMetadataResolver {
 			if (attributes != null) {
 				metadata.setScopeName(attributes.getString("value"));
 				ScopedProxyMode proxyMode = attributes.getEnum("proxyMode");
+				// 如果ScopedProxyMode是DEFAULT则将ScopedProxyMode设置成this.defaultProxyMode，默认是NO
 				if (proxyMode == ScopedProxyMode.DEFAULT) {
 					proxyMode = this.defaultProxyMode;
 				}

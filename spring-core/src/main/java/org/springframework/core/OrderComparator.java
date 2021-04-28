@@ -16,12 +16,12 @@
 
 package org.springframework.core;
 
+import org.springframework.lang.Nullable;
+import org.springframework.util.ObjectUtils;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-
-import org.springframework.lang.Nullable;
-import org.springframework.util.ObjectUtils;
 
 /**
  * {@link Comparator} implementation for {@link Ordered} objects, sorting
@@ -134,6 +134,7 @@ public class OrderComparator implements Comparator<Object> {
 	}
 
 	/**
+	 * 如果实现了Ordered接口，则返回getOrder()
 	 * Find an order value indicated by the given object.
 	 * <p>The default implementation checks against the {@link Ordered} interface.
 	 * Can be overridden in subclasses.
