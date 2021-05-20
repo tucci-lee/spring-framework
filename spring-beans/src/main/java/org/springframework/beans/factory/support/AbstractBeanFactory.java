@@ -246,6 +246,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 		Object bean;
 
 		// Eagerly check singleton cache for manually registered singletons.
+		// 从缓存中获取bean，如果有
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) {
 			if (logger.isDebugEnabled()) {
@@ -315,8 +316,13 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
+					// 删除二级三级缓存，添加一级缓存
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
+							/*  1. 创建bean实例
+								2. 填充属性 AutowiredAnnotationBeanPostProcessor#postProcessPropertyValues
+								3. 初始化 invokeAwareMethods -> applyBeanPostProcessorsBeforeInitialization -> invokeInitMethods -> applyBeanPostProcessorsAfterInitialization
+							 */
 							return createBean(beanName, mbd, args);
 						}
 						catch (BeansException ex) {
@@ -1556,6 +1562,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	 * Mark the specified bean as already created (or about to be created).
 	 * <p>This allows the bean factory to optimize its caching for repeated
 	 * creation of the specified bean.
+	 * 	标记bean正在创建中或已经创建
 	 * @param beanName the name of the bean
 	 */
 	protected void markBeanAsCreated(String beanName) {

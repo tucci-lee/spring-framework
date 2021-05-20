@@ -55,9 +55,9 @@ final class PostProcessorRegistrationDelegate {
 
 		if (beanFactory instanceof BeanDefinitionRegistry) {
 			BeanDefinitionRegistry registry = (BeanDefinitionRegistry) beanFactory;
-			// 常规的BeanFactory后置处理器
+			// 常规的BeanFactoryPostProcessor(BeanFactory后置处理器)
 			List<BeanFactoryPostProcessor> regularPostProcessors = new ArrayList<>();
-			// BeanDefinition注册后置处理器（是BeanFactory的子接口）
+			// BeanDefinitionRegistryPostProcessor（BeanDefinitionRegistry后置处理器，是BeanFactoryPostProcessor的子接口）
 			List<BeanDefinitionRegistryPostProcessor> registryProcessors = new ArrayList<>();
 
 			// 如果是手动设置的则先操作

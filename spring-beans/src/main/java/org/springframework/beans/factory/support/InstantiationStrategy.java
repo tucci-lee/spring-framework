@@ -16,12 +16,12 @@
 
 package org.springframework.beans.factory.support;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.lang.Nullable;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 
 /**
  * Interface responsible for creating instances corresponding to a root bean definition.
@@ -37,6 +37,7 @@ public interface InstantiationStrategy {
 
 	/**
 	 * Return an instance of the bean with the given name in this factory.
+	 * 反射创建bean
 	 * @param bd the bean definition
 	 * @param beanName the name of the bean when it is created in this context.
 	 * The name can be {@code null} if we are autowiring a bean which doesn't
